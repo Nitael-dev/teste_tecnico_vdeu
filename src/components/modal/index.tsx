@@ -25,7 +25,7 @@ ModalProps) {
         onClick={() => {
           handleOpen();
         }}
-        className="w-screen h-screen absolute top-0 bg-accent"
+        className="w-screen h-screen absolute top-0 bg-black opacity-50"
       />
       <Card className="flex flex-col w-4/6 h-4/6 m-auto justify-between  py-8 px-2 bg-gray-700 rounded-lg z-10">
         <CardHeader>
@@ -38,7 +38,7 @@ ModalProps) {
               onClick={() => {
                 handleOpen();
               }}
-              className="p-2 px-4 text-red-600 border border-red-900 rounded-md"
+              className="p-2 px-4 text-red-500 border border-red-500 rounded-md"
             >
               Cancelar
             </button>

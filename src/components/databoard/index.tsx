@@ -36,6 +36,7 @@ export function Databoard({ data }: DataboardProps) {
       })
       .toSorted((a, b) => b.value - a.value);
   }
+
   return (
     <Card className="flex flex-col items-center justify-center w-full">
       <CardHeader className="flex w-full">

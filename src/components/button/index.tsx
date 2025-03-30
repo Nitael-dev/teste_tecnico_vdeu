@@ -56,11 +56,11 @@ export function Button({
       <button
         disabled={disabled}
         onMouseDown={() => handleMouseDown(0)}
-        className={`flex flex-3/5 justify-center bg-purple-700 active:bg-purple-800 disabled:bg-purple-300 rounded-l-md ${
+        className={`flex flex-3/5 justify-center bg-purple-700 active:bg-purple-800 disabled:bg-purple-500 rounded-l-md ${
           stillPressed
             ? " border-2 border-b-0 border-r-0 "
             : " border-4 border-t-0 border-l-0 border-r-0"
-        } border-[#eee]`}
+        } border-gray-400`}
       >
         {inProgress ? (
           <Image
@@ -89,11 +89,11 @@ export function Button({
         <button
           disabled={disabledActions}
           onMouseDown={() => handleMouseDown(1)}
-          className={`bg-red-600 active:bg-red-700 disabled:bg-red-300 rounded-tr-md py-2 ${
+          className={`bg-red-600 active:bg-red-500 disabled:bg-red-800 rounded-tr-md py-2 ${
             pressed === 1
               ? " border-2 border-b-0 border-r-0"
               : " border-2 border-t-0 border-l-0 border-r-0"
-          } border-[#eee]`}
+          } border-gray-400`}
         >
           <Image
             draggable={false}
@@ -105,11 +105,11 @@ export function Button({
         <button
           onMouseDown={() => handleMouseDown(2)}
           disabled={disabledActions}
-          className={`bg-emerald-300 active:bg-emerald-400 disabled:bg-emerald-100 rounded-br-md py-2 ${
+          className={`bg-emerald-600 active:bg-emerald-500 disabled:bg-emerald-800 rounded-br-md py-2 ${
             pressed === 2
               ? " border-2 border-b-0 border-r-0"
               : " border-2 border-t-0 border-l-0 border-r-0"
-          } border-[#eee]`}
+          } border-gray-400`}
         >
           <Image
             draggable={false}

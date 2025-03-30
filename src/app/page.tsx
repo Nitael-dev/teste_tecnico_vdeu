@@ -69,6 +69,37 @@ export default function Home() {
       if (!discipline || !theme) {
         return;
       }
+
+      function _handleLocalStorage(persist?: true) {
+        localStorage.setItem(
+          "@vdue:lastTracked",
+          JSON.stringify([
+            ...currentTracking,
+            {
+              id: currentTracking.length - 1,
+              time: formatTime(elapsedTime),
+              total: elapsedTime,
+              timeType: "Finalizado",
+              createdAt: formatTimestamp(new Date()),
+            },
+          ])
+        );
+        if (persist) {
+          localStorage.setItem(
+            "@vdue:tracking",
+            JSON.stringify([
+              ...board,
+              {
+                id: board.length,
+                tema: theme,
+                disciplina: discipline,
+                value: elapsedTime,
+              },
+            ])
+          );
+        }
+      }
+
       switch (index) {
         case 1:
           contentHandler({
@@ -77,25 +108,12 @@ export default function Home() {
             description:
               "Todo o progresso feito na plataforma é rastreado e somado ao tempo total investido em cada disciplina e tema da plataforma! Tem certeza que deseja perder todo o progresso rastreado até então?",
             action: () => {
-              localStorage.setItem(
-                "@vdue:lastTracked",
-                JSON.stringify([
-                  ...currentTracking,
-                  {
-                    id: currentTracking.length - 1,
-                    time: formatTime(elapsedTime),
-                    total: elapsedTime,
-                    timeType: "Finalizado",
-                    createdAt: formatTimestamp(new Date()),
-                  },
-                ])
-              );
+              _handleLocalStorage();
 
               setElapsedTime(0);
               setStartTime(null);
 
               setProgressing(undefined);
-              setCurrentTracking([]);
             },
           });
           break;
@@ -106,37 +124,12 @@ export default function Home() {
             description:
               "Ao clicar em confirmar, todas as interações serão salvas e contribuirão para a contagem de horas investidas em cada disciplina/tema.",
             action: () => {
-              localStorage.setItem(
-                "@vdue:tracking",
-                JSON.stringify([
-                  ...board,
-                  {
-                    id: board.length,
-                    tema: theme,
-                    disciplina: discipline,
-                    value: elapsedTime,
-                  },
-                ])
-              );
-              localStorage.setItem(
-                "@vdue:lastTracked",
-                JSON.stringify([
-                  ...currentTracking,
-                  {
-                    id: currentTracking.length - 1,
-                    time: formatTime(elapsedTime),
-                    total: elapsedTime,
-                    timeType: "Finalizado",
-                    createdAt: formatTimestamp(new Date()),
-                  },
-                ])
-              );
+              _handleLocalStorage(true);
 
               setElapsedTime(0);
               setStartTime(null);
 
               setProgressing(undefined);
-              // setCurrentTracking([]);
             },
           });
 
@@ -279,10 +272,10 @@ export default function Home() {
             }`}
           >
             <div
-              className={`flex flex-col gap-2 items-center text-center bg-purple-400 rounded-md p-4 px-6`}
+              className={`flex flex-col gap-2 items-center text-center bg-purple-700 rounded-md p-4 px-6`}
             >
               <article className="font-semibold">{discipline}</article>
-              <div className="h-px w-full bg-gray-950" />
+              <div className="h-px w-full bg-black" />
               <article className="font-semibold">
                 <TooltipValue
                   tip={

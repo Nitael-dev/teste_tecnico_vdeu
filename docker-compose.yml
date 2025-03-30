@@ -1,0 +1,6 @@
+services:
+  teste_tecnico_vdue:
+    build:
+      dockerfile: ./DockerFile
+    ports:
+      - 3000:3000
