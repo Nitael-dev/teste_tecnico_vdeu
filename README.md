@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Teste Técnico - Vício de uma estudante
+## Tecnologias
 
-## Getting Started
+- [Next.JS](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Docker](https://www.docker.com/)
 
-First, run the development server:
+## Requisitos
+- [Docker](https://www.docker.com/) deve estar instalado!!!
+
+## Iniciando a aplicação
+### Realize o clone ou baixe o ZIP do repositório, em seguida acesse o diretório
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  $ git clone https://github.com/Nitael-dev/teste_tecnico_vdue.git
+  $ cd teste_tecnico_vdue
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Rode a imagem Docker da aplicação
+```bash
+  $ docker compose up
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Acesse a aplicação e cronometre seu tempo de estudo nas disciplinas e temas da plataforma, em qualquer Navegador
+```bash
+  http://localhost:3000/
+```
+## Pontos-chave do projeto e considerações sobre o teste
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+A solução foi realizada de acordo com o documento proposto, com potencial de escalabidade. As regras da aplicação passo-a-passo são: selecionar uma disciplina, selecionar um tema e controlar o cronômetro na parte inferior da tela. O cronômetro tem funcionamento tradicional e oferece cinco ações: ininiar, pausar, retomar, parar e salvar. Os diferenciais são as ações de parar e salvar, que possuem funções distintas em relação a persistência de dados. Ao clicar em salvar, todo o tempo rastreado é adicionado ao total estudado e a última sessão, já ao clicar em parar, o tempo rastreado não é implementado ao total estudado e apenas é salvo como última sessão.
 
-## Learn More
+Sobre as tecnologias, utilizei a biblioteca de componentes customizáveis [ShadCN](https://ui.shadcn.com/docs) para a criação de componentes otimizados, recicláveis e customizáveis, tendo em mente que se encaixa ao uso de [TailwindCSS](https://tailwindcss.com/) como meio principal de customização.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Espero muito fazer parte do time e agradeço pelo desafio.
