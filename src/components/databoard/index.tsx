@@ -42,7 +42,7 @@ export function Databoard({ data }: DataboardProps) {
       <CardHeader className="flex w-full">
         <CardTitle>Tabela dos mais estudados!</CardTitle>
       </CardHeader>
-      <ScrollArea className="flex w-full h-96">
+      <ScrollArea className="flex w-full h-32">
         {assemble().map(({ tema, disciplina, value }, key) => {
           return (
             <CardContent className="flex flex-col" key={`board-row-${key}`}>

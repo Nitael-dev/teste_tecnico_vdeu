@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/button";
 import { Chronometer } from "@/components/chronometer";
+import { DataChart } from "@/components/data-chart";
 import { Databoard } from "@/components/databoard";
 import { TooltipValue } from "@/components/toggle";
 import { TrackingCard } from "@/components/tracking-card";
@@ -182,8 +183,8 @@ export default function Home() {
     );
     const lastTracked =
       JSON.parse(String(await localStorage.getItem("@vdue:lastTracked"))) ?? [];
+
     setCurrentTracking(lastTracked);
-    console.log("tracking", tracking);
     setBoard(tracking ?? []);
   }
 
@@ -224,8 +225,9 @@ export default function Home() {
   return (
     <div className="flex w-screen h-screen py-12 flex-col items-center justify-between">
       <div className="flex flex-1 gap-2 pl-4 pr-0 justify-center items-start w-full">
-        <div className="flex w-3/12">
+        <div className="flex flex-col h-max w-3/12 gap-12">
           <Databoard data={board} />
+          <DataChart data={board} />
         </div>
         <div className="flex flex-col h-full justify-between items-center w-6/12">
           <div className="flex gap-2 justify-between ">
@@ -251,9 +253,9 @@ export default function Home() {
                   Pesquisa de temas
                 </Label>
                 <ScrollArea
-                  className={`px-4${
-                    !discipline ? " h-0 " : " h-fit "
-                  }rounded-md border`}
+                  className={`px-4 rounded-md border ${
+                    !discipline ? "h-0" : "h-fit"
+                  }`}
                 >
                   <ToggleGroup
                     className="flex flex-col mx-auto py-2"
@@ -268,14 +270,14 @@ export default function Home() {
 
           <div
             className={`flex flex-col h-full justify-evenly items-center transition-all ${
-              discipline ? " w-6/12" : " w-0"
+              discipline ? "w-6/12" : "w-0"
             }`}
           >
             <div
               className={`flex flex-col gap-2 items-center text-center bg-purple-700 rounded-md p-4 px-6`}
             >
               <article className="font-semibold">{discipline}</article>
-              <div className="h-px w-full bg-black" />
+              <div className="h-px w-full bg-white" />
               <article className="font-semibold">
                 <TooltipValue
                   tip={
@@ -301,7 +303,11 @@ export default function Home() {
           <div className="flex flex-col items-center w-3/12">
             <ScrollArea className="w-full h-96 pr-4">
               {currentTracking.map((item, key) => (
-                <TrackingCard data={item} key={`currentTracking-card-${key}`} />
+                <TrackingCard
+                  className={key !== 0 ? " my-2" : undefined}
+                  data={item}
+                  key={`currentTracking-card-${key}`}
+                />
               ))}
             </ScrollArea>
           </div>

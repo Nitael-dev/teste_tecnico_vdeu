@@ -27,7 +27,7 @@ export const formatTime = (ms: number) => {
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
-  const milliseconds = Math.floor((ms % 1000) / 10); // Pegamos 2 dígitos
+  const milliseconds = Math.floor((ms % 1000) / 10);
 
   return `${hours.toString().padStart(2, "0")}:${minutes
     .toString()

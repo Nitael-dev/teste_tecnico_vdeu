@@ -53,71 +53,83 @@ export function Button({
 
   return (
     <div className={`flex w-full rounded-md ${className}`}>
-      <button
-        disabled={disabled}
-        onMouseDown={() => handleMouseDown(0)}
-        className={`flex flex-3/5 justify-center bg-purple-700 active:bg-purple-800 disabled:bg-purple-500 rounded-l-md ${
-          stillPressed
-            ? " border-2 border-b-0 border-r-0 "
-            : " border-4 border-t-0 border-l-0 border-r-0"
-        } border-gray-400`}
+      <div
+        className={`flex flex-3/5 rounded-l-md bg-gray-400 ${
+          stillPressed || pressed === 0 ? "pt-0.5 pl-0.5" : "pb-1"
+        }`}
       >
-        {inProgress ? (
-          <Image
-            draggable={false}
-            width={36}
-            alt="pause-circle"
-            src={PauseCircle}
-          />
-        ) : inProgress === undefined ? (
-          <Image
-            draggable={false}
-            width={36}
-            alt="not-started"
-            src={NotStarted}
-          />
-        ) : (
-          <Image
-            draggable={false}
-            width={36}
-            alt="play-circle"
-            src={PlayCircle}
-          />
-        )}
-      </button>
+        <button
+          disabled={disabled}
+          onMouseDown={() => handleMouseDown(0)}
+          className={`flex flex-1 justify-center bg-purple-700 active:bg-purple-800 disabled:bg-purple-500 rounded-l-md ${
+            !stillPressed && pressed !== 0 ? "shadow-md shadow-gray-700" : ""
+          }`}
+        >
+          {inProgress ? (
+            <Image
+              draggable={false}
+              width={36}
+              alt="pause-circle"
+              src={PauseCircle}
+            />
+          ) : inProgress === undefined ? (
+            <Image
+              draggable={false}
+              width={36}
+              alt="not-started"
+              src={NotStarted}
+            />
+          ) : (
+            <Image
+              draggable={false}
+              width={36}
+              alt="play-circle"
+              src={PlayCircle}
+            />
+          )}
+        </button>
+      </div>
       <div className="flex flex-col flex-2/5 border-2 border-t-0 border-r-0 border-b-0 border-yellow-500">
-        <button
-          disabled={disabledActions}
-          onMouseDown={() => handleMouseDown(1)}
-          className={`bg-red-600 active:bg-red-500 disabled:bg-red-800 rounded-tr-md py-2 ${
-            pressed === 1
-              ? " border-2 border-b-0 border-r-0"
-              : " border-2 border-t-0 border-l-0 border-r-0"
-          } border-gray-400`}
+        <div
+          className={`flex flex-1 rounded-tr-lg bg-gray-400${
+            pressed === 1 ? " pl-px pt-px" : " pb-0.5"
+          }`}
         >
-          <Image
-            draggable={false}
-            className="m-auto"
-            alt="stop-circle"
-            src={StopCircle}
-          />
-        </button>
-        <button
-          onMouseDown={() => handleMouseDown(2)}
-          disabled={disabledActions}
-          className={`bg-emerald-600 active:bg-emerald-500 disabled:bg-emerald-800 rounded-br-md py-2 ${
-            pressed === 2
-              ? " border-2 border-b-0 border-r-0"
-              : " border-2 border-t-0 border-l-0 border-r-0"
-          } border-gray-400`}
+          <button
+            disabled={disabledActions}
+            onMouseDown={() => handleMouseDown(1)}
+            className={`flex flex-1 bg-red-600 active:bg-red-700 disabled:bg-red-950 rounded-tr-md py-2 ${
+              pressed === 1 ? "" : "shadow-2xs shadow-gray-500"
+            }`}
+          >
+            <Image
+              draggable={false}
+              className="m-auto"
+              alt="stop-circle"
+              src={StopCircle}
+            />
+          </button>
+        </div>
+        <div
+          className={`flex flex-1 rounded-br-md bg-gray-400 ${
+            pressed === 2 ? "pl-px pt-px" : "pb-0.5"
+          }`}
         >
-          <Image
-            draggable={false}
-            className="m-auto"
-            alt="save-clock"
-            src={SaveClock}
-          />
-        </button>
+          <button
+            onMouseDown={() => handleMouseDown(2)}
+            disabled={disabledActions}
+            className={`flex flex-1 bg-emerald-600 active:bg-emerald-700 disabled:bg-emerald-950 rounded-br-lg py-2 ${
+              pressed === 2 ? "" : "shadow-2xs shadow-gray-500"
+            }`}
+          >
+            <Image
+              draggable={false}
+              className="m-auto"
+              alt="save-clock"
+              src={SaveClock}
+            />
+          </button>
+        </div>
       </div>
     </div>
   );
