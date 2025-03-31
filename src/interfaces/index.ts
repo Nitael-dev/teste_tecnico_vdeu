@@ -32,3 +32,7 @@ export interface LeaderboardProps {
   disciplina: string;
   value: number;
 }
+
+export interface ModalContextProviderProps {
+  children: React.ReactNode;
+}

@@ -1,14 +1,10 @@
 "use client";
 import { Modal } from "@/components/modal";
-import { ModalContentProps } from "@/interfaces";
-import { createContext, useContext, useState } from "react";
+import { ModalContentProps, ModalContextProviderProps } from "@/interfaces";
+import { createContext, useContext, useLayoutEffect, useState } from "react";
 
 interface ModalContextProps {
   contentHandler(data: ModalContentProps): void;
-}
-
-interface ModalContextProviderProps {
-  children: React.ReactNode;
 }
 
 const DEFAULT_MODAL: ModalContentProps = {
@@ -20,9 +16,13 @@ const DEFAULT_MODAL: ModalContentProps = {
 
 const ModalContext = createContext({} as ModalContextProps);
 
-export function ModalContextProvider({ children }: ModalContextProviderProps) {
+export default function NonDynamicModalProvider({
+  children,
+}: ModalContextProviderProps) {
   const [data, setData] = useState(DEFAULT_MODAL);
   const [state, setState] = useState(false);
+
+  const [modalHeight, setModalHeight] = useState(0);
 
   function contentHandler(content: ModalContentProps) {
     setData(content);
@@ -33,13 +33,20 @@ export function ModalContextProvider({ children }: ModalContextProviderProps) {
     setState((old) => !old);
   }
 
+  useLayoutEffect(() => {
+    setModalHeight(document?.body?.scrollHeight ?? 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [document?.body?.scrollHeight]);
+
   return (
     <ModalContext
       value={{
         contentHandler,
       }}
     >
-      {state && <Modal handleOpen={handleOpen} open={state} data={data} />}
+      {state && (
+        <Modal height={modalHeight} handleOpen={handleOpen} data={data} />
+      )}
       {children}
     </ModalContext>
   );

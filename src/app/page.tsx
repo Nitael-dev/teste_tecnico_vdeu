@@ -11,15 +11,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { ToggleGroup } from "@/components/ui/toggle-group";
 import { useModal } from "@/context/modal";
 import { LeaderboardProps, TrackingProps } from "@/interfaces";
-// import { ToggleProps } from "@/interfaces";
 import { material } from "@/mock";
 import { formatTime, formatTimestamp } from "@/utils";
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
   const { contentHandler } = useModal();
-
-  const [innerWidth, setInnerWidth] = useState(0);
 
   const [discipline, setDiscipline] = useState("");
   const [theme, setTheme] = useState("");
@@ -109,7 +106,7 @@ export default function Home() {
             title: "Você está prestes a perder um progresso importante!",
             type: "confirmation",
             description:
-              "Todo o progresso feito na plataforma é rastreado e somado ao tempo total investido em cada disciplina e tema da plataforma! Tem certeza que deseja perder todo o progresso rastreado até então?",
+              "Todo o progresso feito na plataforma é rastreado e somado ao tempo total investido em cada disciplina e tema! Tem certeza que deseja perder todo o progresso rastreado até então?",
             action: () => {
               _handleLocalStorage();
 
@@ -224,29 +221,19 @@ export default function Home() {
     }
   }, [startTime]);
 
-  useLayoutEffect(() => {
-    setInnerWidth(window.innerWidth);
-  }, []);
-
   return (
-    <div className={`flex w-screen ${innerWidth <= 720 ? "py-4" : "p-12"}`}>
+    <div className={`flex w-screen py-4 sm:h-screen sm:p-12`}>
       <div
-        className={`flex ${
-          innerWidth <= 720 ? "flex-col px-4" : "pl-4 pr-0"
-        } h-full gap-2 justify-center items-start w-full`}
+        className={`flex flex-col sm:flex-row px-4 sm:pl-4 sm:pr-0 h-full gap-2 justify-center items-start w-full`}
       >
         <div
-          className={`flex h-max flex-col ${
-            innerWidth <= 720 ? "w-full" : "w-3/12"
-          } gap-12 justify-center items-center`}
+          className={`flex h-max flex-col w-full sm:w-3/12 gap-12 justify-center items-center`}
         >
           <Databoard data={board} />
           <DataChart data={board} />
         </div>
         <div
-          className={`flex flex-col h-full justify-between gap-4 items-center ${
-            innerWidth <= 720 ? "w-full" : "w-6/12"
-          }`}
+          className={`flex flex-col h-full justify-between gap-4 items-center w-full sm:w-6/12`}
         >
           {progressing === undefined && (
             <div className="flex gap-2 h-full justify-between">
@@ -285,9 +272,9 @@ export default function Home() {
           )}
 
           <div
-            className={`flex flex-col h-full justify-between items-center ${
-              innerWidth <= 720 ? "gap-2" : "gap-4"
-            } ${discipline ? "w-6/12" : "w-0"}`}
+            className={`flex flex-col h-full justify-between transition-all items-center gap-2 sm:gap-4 ${
+              discipline ? "w-6/12" : "w-0"
+            }`}
           >
             <div
               className={`flex flex-col gap-2 items-center text-center bg-purple-700 rounded-md p-4 px-6`}
@@ -316,14 +303,8 @@ export default function Home() {
           </div>
         </div>
         {currentTracking.length > 0 && (
-          <div
-            className={`flex flex-col items-center ${
-              innerWidth <= 720 ? "w-full" : "w-3/12"
-            }`}
-          >
-            <ScrollArea
-              className={`w-full ${innerWidth <= 720 ? "h-56" : "h-96 pr-4"}`}
-            >
+          <div className={`flex flex-col items-center w-full sm:w-3/12`}>
+            <ScrollArea className={`w-full h-56 sm:h-96 sm:pr-4`}>
               {currentTracking.map((item, key) => (
                 <TrackingCard
                   className={key !== 0 ? " my-2" : undefined}
