@@ -35,7 +35,7 @@ export function Modal({
         }}
         className="w-screen h-screen absolute top-0 bg-black opacity-50"
       />
-      <Card className="flex flex-col w-4/6 h-2/6 sm:h-4/6 m-auto justify-between  py-8 px-2 bg-gray-700 rounded-lg z-10">
+      <Card className="flex flex-col w-4/6 h-4/6 m-auto justify-between  py-8 px-2 bg-gray-700 rounded-lg z-10">
         <CardHeader>
           <CardTitle className="mb-2">{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
